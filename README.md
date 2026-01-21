@@ -116,3 +116,7 @@ PostgreSQL
 Render
 - 使用予定のライブラリ
 Docker / Hotwire（Turbo/Stimulus） / Tailwind CSS / Sorcery
+
+## 画面遷移図
+Figma:
+https://www.figma.com/design/z9OJEzj6RrJREXnIOK9rS8/RUNTEQ%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=WDtZv4TgHHbO3hC6-1
