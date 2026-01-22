@@ -122,5 +122,5 @@ Figma:
 https://www.figma.com/design/z9OJEzj6RrJREXnIOK9rS8/RUNTEQ%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=WDtZv4TgHHbO3hC6-1
 
 ## ER図
-<img width="1316" height="546" alt="image" src="https://github.com/user-attachments/assets/63cb32df-8511-4f45-9983-a4e9769c9a7e" />
+<img width="1318" height="530" alt="image" src="https://github.com/user-attachments/assets/2c4e0a87-6215-416b-843f-02774a81a132" />
 
