@@ -120,3 +120,7 @@ Docker / Hotwire（Turbo/Stimulus） / Tailwind CSS / Sorcery
 ## 画面遷移図
 Figma:
 https://www.figma.com/design/z9OJEzj6RrJREXnIOK9rS8/RUNTEQ%E5%8D%92%E6%A5%AD%E5%88%B6%E4%BD%9C_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=WDtZv4TgHHbO3hC6-1
+
+## ER図
+<img width="1588" height="718" alt="image" src="https://github.com/user-attachments/assets/c14864de-30b0-4476-9c2f-2517f8153bda" />
+
