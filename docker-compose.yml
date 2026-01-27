@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    command: bash -lc "bin/rails server -b 0.0.0.0 -p 3000"
+    command: bash -lc "rm -f tmp/pids/server.pid && bin/rails server -b 0.0.0.0 -p 3000"
     volumes:
       - .:/app
       - bundle:/usr/local/bundle
@@ -13,16 +13,18 @@ services:
       - db
     environment:
       RAILS_ENV: development
-      DATABASE_URL: postgres://postgres:password@db:5432/postgres
+      DATABASE_URL: postgres://postgres:password@db:5432/app_graduationproject_development
+    tty: true
+    stdin_open: true
 
   db:
     image: postgres:16
     environment:
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: app_graduationproject_development
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
   bundle:
-  
