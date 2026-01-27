@@ -7,6 +7,13 @@ gem "pg"
 gem "puma"
 gem "bootsnap", require: false
 
+# Frontend
+gem "importmap-rails"
+gem "turbo-rails"
+gem "stimulus-rails"
+gem "tailwindcss-rails", "~> 3.3.1"
+gem "sprockets-rails"
+
 # Auth / Authz
 gem "sorcery"
 gem "pundit"
