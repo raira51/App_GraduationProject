@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>Letteria</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="icon" type="image/png" href="<%= asset_path 'favicon.png' %>">
+    <link rel="apple-touch-icon" href="<%= asset_path 'favicon.png' %>">
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
+  <body class="min-h-[100svh] w-full bg-stone-50 overflow-hidden">
     <%= yield %>
   </body>
 </html>
