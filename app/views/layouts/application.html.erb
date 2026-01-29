@@ -7,12 +7,26 @@
     <%= csp_meta_tag %>
     <%= favicon_link_tag "favicon.ico" %>
     <%= favicon_link_tag "favicon.ico", rel: "apple-touch-icon" %>
-    
+
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="min-h-[100svh] w-full bg-stone-50 overflow-hidden">
+  <body class="min-h-screen w-full bg-stone-50 <%= current_page?(root_path) ? 'overflow-hidden' : 'overflow-auto' %>">
+
+    <% if logged_in? %>
+      <header class="w-full">
+        <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-end gap-3 text-sm">
+          <% if logged_in? %>
+            <%= link_to "マイページ", mypage_path, class: "underline" %>
+            <%= button_to "ログアウト", logout_path, method: :delete, class: "underline", form_class: "inline" %>
+          <% else %>
+            <%= link_to "ログイン", login_path, class: "underline" %>
+          <% end %>
+        </div>
+      </header>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

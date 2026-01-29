@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: "ID"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+
+    errors:
+      messages:
+        too_short: "は%{count}文字以上にしてください"
+        too_long: "は%{count}文字以内にしてください"
+        invalid: "は不正な値です"
+        blank: "を入力してください"
+        taken: "はすでに使われています"
+        confirmation: "が一致しません"
+
+      models:
+        user:
+          attributes:
+            name:
+              blank: "を入力してください"
+              taken: "はすでに使われています"
+              too_short: "は%{count}文字以上にしてください"
+              too_long: "は%{count}文字以内にしてください"
+              invalid: "は半角英数字(記号は_のみ可)、先頭は英字にしてください"
+            password:
+              blank: "を入力してください"
+              too_short: "は%{count}文字以上にしてください"
+              invalid: "は半角英数字のみで入力してください"
+            password_confirmation:
+              blank: "を入力してください"
+              confirmation: "が一致しません"
