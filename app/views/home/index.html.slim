@@ -1,4 +1,3 @@
-/ app/views/home/index.html.slim
 .relative.w-full.overflow-hidden.px-6 class="min-h-[100svh] flex items-center justify-center"
   .pointer-events-none.absolute.inset-0.opacity-50
     div class="absolute -top-24 -left-24 h-[28rem] w-[28rem] rounded-full blur-2xl"
@@ -15,7 +14,7 @@
           class: "mx-auto w-full max-w-[10rem] sm:max-w-[12rem] opacity-95"
       | デジタルでも温度のある体験を、ここで。
     .mt-10.space-y-3
-      = link_to "大切な人をお祝いする", "/mypage",
+      = link_to "大切な人をお祝いする", start_path,
         class: "inline-flex w-full justify-center rounded-xl bg-teal-700 px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[1px] active:scale-[0.98] active:shadow-none"
 
     p.mt-8.text-xs.tracking-widest.text-stone-400

@@ -1,0 +1,24 @@
+div.min-h-screen.w-full.overflow-auto
+  .mx-auto.max-w-5xl.px-4.py-8
+    h1.text-2xl.font-bold.mb-6
+      | マイページ
+
+    p.text-sm.text-stone-600.mb-6
+      | ログイン中：
+      = current_user.name
+
+    - if @celebrations.any?
+      ul.space-y-3
+        - @celebrations.each do |c|
+          li.rounded.border.border-stone-200.bg-white.p-4
+            .font-semibold
+              = c.title.presence || "（タイトル未設定）"
+            .text-sm.text-stone-600.mt-1
+              | 受け取る人：
+              = c.receiver_name
+            .text-sm.text-stone-600
+              | 共有URL：
+              = c.share_url
+    - else
+      p.text-stone-600
+        | まだお祝いルームがありません。
