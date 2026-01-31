@@ -24,6 +24,13 @@ Rails.application.routes.draw do
   get "/mypage", to: "mypages#show"
 
   # celebrations
-  resources :celebrations, only: %i[new create show]
+  resources :celebrations, only: %i[new create edit update] do
+    member do
+      get :issued
+      patch :publish
+   end
+  end
 
+  #share_url
+  get "/celebrations/:share_url", to: "celebrations#show", as: :public_celebration
 end

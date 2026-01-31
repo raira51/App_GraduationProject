@@ -2,7 +2,7 @@ class CelebrationsController < ApplicationController
   before_action :require_login, only: %i[new create edit update destroy]
 
   def show
-    @celebration = Celebration.find_by!(share_url: params[:id])
+    @celebration = Celebration.find_by!(share_url: params[:share_url])
   end
 
   def new
@@ -10,15 +10,17 @@ class CelebrationsController < ApplicationController
   end
 
   def create
-    @celebration = Celebration.new(celebration_params)
+    @celebration = current_user.celebrations.new(celebration_params)
+    @celebration.status = :draft
 
     if @celebration.save
-      redirect_to celebration_path(@celebration.share_url), notice: "お祝いルームを作成しました"
+      redirect_to issued_celebration_path(@celebration), notice: "お祝いルームを作成しました"
     else
-      flash.now[:alert] = @celebration.errors.full_messages
+      Rails.logger.debug @celebration.errors.full_messages
       render :new, status: :unprocessable_entity
-    end
   end
+end
+
 
   def edit
   end
@@ -28,6 +30,17 @@ class CelebrationsController < ApplicationController
 
   def destroy
   end
+
+  def publish
+    @celebration = current_user.celebrations.find(params[:id])
+    @celebration.published!
+    redirect_to mypage_path, notice: "公開しました"
+  end
+
+  def issued
+    @celebration = current_user.celebrations.find(params[:id])
+  end
+
 
   private
 
