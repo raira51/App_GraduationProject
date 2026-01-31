@@ -26,9 +26,11 @@
     </p>
 
     <div class="mt-10 space-y-3">
-      <%= link_to "大切な人をお祝いする", start_path,
-            class: "inline-flex w-full justify-center rounded-xl bg-teal-700 px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
-    </div>
+  <%= link_to "大切な人をお祝いする",
+      (current_user.present? ? new_celebration_path : start_path),
+      class: "inline-flex w-full justify-center rounded-xl bg-teal-700 px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
+
+</div>
 
     <p class="mt-8 text-xs tracking-widest text-stone-400">
       flower language · gratitude · celebration

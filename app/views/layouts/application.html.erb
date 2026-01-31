@@ -10,21 +10,28 @@
 
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
   </head>
 
   <body class="min-h-screen w-full bg-stone-50 <%= current_page?(root_path) ? 'overflow-hidden' : 'overflow-auto' %>">
-    <% if logged_in? %>
-      <header class="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
-        <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
-          <%= link_to "Letteria", root_path, class: "text-lg font-semibold" %>
+    <header class="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
+      <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
+        <%= link_to "Letteria", root_path, class: "text-lg font-semibold" %>
 
-          <nav class="flex items-center gap-4 text-sm">
+        <nav class="flex items-center gap-4 text-sm">
+          <% if current_user.present? %>
+            <%= link_to "マイページ", mypage_path, class: "hover:underline" %>
+             <%= button_to "ログアウト", logout_path, method: :delete,
+          class: "bg-transparent p-0 hover:underline" %>
 
-            <%= button_to "ログアウト", logout_path, method: :delete, class: "bg-transparent p-0 hover:underline" %>
-          </nav>
-        </div>
-      </header>
-    <% end %>
+         <% else %>
+           <% unless current_page?(start_path) || current_page?(login_path) %>
+             <%= link_to "ログイン", login_path, class: "hover:underline" %>
+            <% end %>
+         <% end %>
+        </nav>
+      </div>
+    </header>
 
     <%= yield %>
   </body>
