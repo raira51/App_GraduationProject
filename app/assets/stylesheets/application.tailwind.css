@@ -2,12 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .square {
+    aspect-ratio: 1 / 1;
+  }
+
+  #celebration-list {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    gap: 1.25rem;
+    grid-template-columns: repeat(2, 9rem);
+  }
+
+  .celebration-width {
+    width: calc(9rem * 2 + 1.25rem * 1);
+  }
+
+  @media (min-width: 768px) {
+    #celebration-list {
+      grid-template-columns: repeat(3, 9rem);
+    }
+
+    .celebration-width {
+      width: calc(9rem * 3 + 1.25rem * 2);
+    }
   }
 }
-
-*/
