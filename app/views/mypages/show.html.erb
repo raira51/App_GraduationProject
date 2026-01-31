@@ -10,7 +10,7 @@
   </h1>
 
   <div class="mt-8 mb-8 flex justify-center">
-    <%= link_to "新しいお祝いルームを作成する", "#",
+    <%= link_to "新しいお祝いルームを作成する", new_celebration_path,
           class: "block celebration-width rounded-xl bg-teal-700 px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
   </div>
 
@@ -21,7 +21,7 @@
   <% if @celebrations.any? %>
     <div id="celebration-list" class="mt-4 text-center">
       <% @celebrations.each do |celebration| %>
-        <%= link_to "#", class: "block" do %>
+        <%= link_to celebration_path(celebration.share_url), class: "block" do %>
           <div class="square w-36 overflow-hidden rounded-2xl bg-white border border-stone-200 p-3 shadow-sm flex flex-col justify-between transition hover:shadow-md">
             <p class="text-xs text-stone-500 leading-tight">
               <%= "#{celebration.giver_name}から #{celebration.receiver_name}へ" %>
