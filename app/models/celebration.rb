@@ -10,6 +10,9 @@ class Celebration < ApplicationRecord
   validates :title, :giver_name, :receiver_name, presence: true
   validates :share_url, presence: true, uniqueness: true
 
+  enum status: { draft: 0, published: 1 }
+  before_validation :ensure_share_url, on: :create
+
   private
 
   def ensure_share_url

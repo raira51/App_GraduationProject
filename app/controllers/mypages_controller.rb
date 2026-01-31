@@ -3,5 +3,7 @@ class MypagesController < ApplicationController
 
   def show
     @celebrations = current_user.celebrations.order(created_at: :desc)
+    @draft_celebrations = @celebrations.draft
+    @published_celebrations = @celebrations.published
   end
 end

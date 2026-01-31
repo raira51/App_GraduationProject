@@ -1,0 +1,52 @@
+<div class="relative w-full overflow-hidden px-6 min-h-[100svh] flex items-center justify-center">
+  <div class="pointer-events-none absolute inset-0 opacity-50">
+    <div
+      class="absolute -top-24 -left-24 h-[28rem] w-[28rem] rounded-full blur-2xl"
+      style="background: radial-gradient(circle, rgba(251,113,133,0.40) 0%, transparent 70%);"
+    ></div>
+
+    <div
+      class="absolute -bottom-28 -right-28 h-[28rem] w-[28rem] rounded-full blur-2xl"
+      style="background: radial-gradient(circle, rgba(148,163,184,0.35) 0%, transparent 70%);"
+    ></div>
+  </div>
+
+  <div class="relative mx-auto w-full max-w-md md:max-w-lg rounded-2xl bg-white shadow-sm ring-1 ring-stone-200 p-10 md:p-12">
+    <div class="text-center">
+      <h1 class="mt-2 text-2xl md:text-3xl font-semibold text-stone-900">
+        閲覧用URLを発行しました
+      </h1>
+
+      <p class="mt-3 text-sm leading-6 text-stone-500">
+        このURLを共有すると、お祝いルームを閲覧できます。<br>
+        まずは編集して内容を整えましょう！
+      </p>
+
+      <div class="mt-5">
+        <%= image_tag "paper_airplane.png",
+      class: "mx-auto w-24 sm:w-28 opacity-95" %>
+      </div>
+    </div>
+
+    <div class="mt-8 rounded-xl border border-stone-200 bg-stone-50 p-4">
+      <p class="text-xs text-stone-500">閲覧用URL</p>
+
+      <input class="mt-4 px-4 w-full rounded-lg border border-stone-200 bg-stone-50 text-xs text-stone-600"
+        value="<%= celebration_url(@celebration.share_url) %>">
+    </div>
+
+    <div class="mt-8 space-y-3">
+      <%= link_to "編集して内容を作る",
+            edit_celebration_path(@celebration),
+            class: "inline-flex w-full justify-center rounded-xl bg-teal-700 px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
+
+      <%= link_to "閉じる（マイページへ）",
+            mypage_path,
+            class: "inline-flex w-full justify-center rounded-xl border border-stone-200 bg-white px-6 py-3 text-sm font-semibold text-stone-700 shadow-sm transition hover:bg-stone-50" %>
+    </div>
+
+    <p class="mt-8 text-center text-xs tracking-widest text-stone-400">
+      flower language · gratitude · celebration
+    </p>
+  </div>
+</div>
