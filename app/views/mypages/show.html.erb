@@ -5,23 +5,70 @@
     </div>
   <% end %>
 
+  <% if flash[:alert] %>
+    <div class="mb-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
   <h1 class="text-3xl font-bold text-center">
     <%= "#{current_user.name}さんのマイページ" %>
   </h1>
 
   <div class="mt-8 mb-8 flex justify-center">
-    <%= link_to "新しいお祝いルームを作成する", "#",
+    <%= link_to "新しいお祝いルームを作成する", new_celebration_path,
           class: "block celebration-width rounded-xl bg-teal-700 px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
   </div>
 
-  <div class="mt-8 text-center">
-    <h2 class="text-lg font-semibold">あなたのお祝いルーム一覧</h2>
+  <!-- 作成中 -->
+  <div class="mt-10 text-center">
+    <h2 class="text-lg font-semibold">作成中のお祝い一覧</h2>
+    <div class="mx-auto celebration-width border-b border-stone-200 mt-4">
+    </div>
   </div>
 
-  <% if @celebrations.any? %>
-    <div id="celebration-list" class="mt-4 text-center">
-      <% @celebrations.each do |celebration| %>
-        <%= link_to "#", class: "block" do %>
+  <% if @draft_celebrations.any? %>
+    <div id="draft-celebration-list" class="mt-4">
+      <% @draft_celebrations.each do |celebration| %>
+        <%= link_to edit_celebration_path(celebration), class: "block" do %>
+          <div class="square w-36 overflow-hidden rounded-2xl bg-white border border-stone-200 p-3 shadow-sm flex flex-col justify-between transition hover:shadow-md">
+            <p class="text-xs text-stone-500 leading-tight">
+              <%= "#{celebration.giver_name.presence || '（お祝いする人未設定）'}から #{celebration.receiver_name.presence || '（お祝いされる人未設定）'}へ" %>
+            </p>
+
+            <p class="mt-2 text-sm font-semibold leading-snug line-clamp-3">
+              <%= celebration.title.presence || "（タイトル未設定）" %>
+            </p>
+
+            <p class="mt-3 text-xs text-stone-500 font-mono truncate">
+              更新日:
+              <%= l celebration.updated_at.to_date %>
+            </p>
+
+            <p class="mt-2 text-[11px] text-amber-600">
+              編集中
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="mt-4 rounded-xl border bg-white p-6 text-stone-600 text-center">
+      <p>作成中のお祝いルームはありません。</p>
+    </div>
+  <% end %>
+
+  <!-- 公開済み -->
+  <div class="mt-10 text-center">
+    <h2 class="text-lg font-semibold">これまでに作成したお祝い一覧</h2>
+    <div class="mx-auto celebration-width border-b border-stone-200 mt-4">
+    </div>
+  </div>
+
+  <% if @published_celebrations.any? %>
+    <div id="celebration-list" class="mt-4">
+      <% @published_celebrations.each do |celebration| %>
+        <%= link_to public_celebration_path(celebration.share_url), class: "block" do %>
           <div class="square w-36 overflow-hidden rounded-2xl bg-white border border-stone-200 p-3 shadow-sm flex flex-col justify-between transition hover:shadow-md">
             <p class="text-xs text-stone-500 leading-tight">
               <%= "#{celebration.giver_name}から #{celebration.receiver_name}へ" %>
@@ -40,9 +87,9 @@
       <% end %>
     </div>
   <% else %>
-    <div class="mt-4 rounded-xl border bg-white p-6 text-stone-600">
-      <p>まだお祝いルームがありません。</p>
-      <p class="mt-2">「新しいお祝いルームを作成する」から作成できます。</p>
+    <div class="mt-4 rounded-xl border bg-white p-6 text-stone-600 text-center">
+      <p>公開済みのお祝いルームはまだありません。</p>
+      <p class="mt-2 text-xs text-stone-500">「内容を確定する」で公開すると、ここに表示されます。</p>
     </div>
   <% end %>
 </div>
