@@ -19,7 +19,6 @@ gem "sorcery"
 gem "pundit"
 
 # View / API
-gem "slim-rails"
 gem "jbuilder"
 gem "rails-i18n"
 gem "meta-tags"
