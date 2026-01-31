@@ -1,0 +1,48 @@
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <% if flash[:notice] %>
+    <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <h1 class="text-3xl font-bold text-center">
+    <%= "#{current_user.name}さんのマイページ" %>
+  </h1>
+
+  <div class="mt-8 mb-8 flex justify-center">
+    <%= link_to "新しいお祝いルームを作成する", "#",
+          class: "block celebration-width rounded-xl bg-teal-700 px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
+  </div>
+
+  <div class="mt-8 text-center">
+    <h2 class="text-lg font-semibold">あなたのお祝いルーム一覧</h2>
+  </div>
+
+  <% if @celebrations.any? %>
+    <div id="celebration-list" class="mt-4 text-center">
+      <% @celebrations.each do |celebration| %>
+        <%= link_to "#", class: "block" do %>
+          <div class="square w-36 overflow-hidden rounded-2xl bg-white border border-stone-200 p-3 shadow-sm flex flex-col justify-between transition hover:shadow-md">
+            <p class="text-xs text-stone-500 leading-tight">
+              <%= "#{celebration.giver_name}から #{celebration.receiver_name}へ" %>
+            </p>
+
+            <p class="mt-2 text-sm font-semibold leading-snug line-clamp-3">
+              <%= celebration.title %>
+            </p>
+
+            <p class="mt-3 text-xs text-stone-500 font-mono truncate">
+              作成日:
+              <%= l celebration.created_at.to_date %>
+            </p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="mt-4 rounded-xl border bg-white p-6 text-stone-600">
+      <p>まだお祝いルームがありません。</p>
+      <p class="mt-2">「新しいお祝いルームを作成する」から作成できます。</p>
+    </div>
+  <% end %>
+</div>
