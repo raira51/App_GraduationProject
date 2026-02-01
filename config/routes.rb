@@ -40,4 +40,5 @@ Rails.application.routes.draw do
   # share_url(手紙投稿用)
   get  "/l/:share_url", to: "public_letters#new"
   post "/l/:share_url", to: "public_letters#create"
+  get "/l/:share_url/thanks", to: "public_letters#thanks", as: :public_letter_thanks
 end
