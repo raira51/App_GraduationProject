@@ -5,7 +5,16 @@ ja:
         name: "ID"
         password: "パスワード"
         password_confirmation: "パスワード（確認）"
-
+      celebration:
+        title: "お祝いルームの名前"
+        celebration_date: "お祝いする日付"
+        giver_name: "お祝いする人"
+        receiver_name: "お祝いされる人"
+        short_message: "お祝いの一言"
+        view_password: "閲覧用の合言葉"
+      letter:
+        sender_name: "送信者名"
+        body: "メッセージ"
     errors:
       messages:
         too_short: "は%{count}文字以上にしてください"
@@ -31,3 +40,7 @@ ja:
             password_confirmation:
               blank: "を入力してください"
               confirmation: "が一致しません"
+        celebration:
+          attributes:
+            view_password:
+              too_long: "は10文字以内で入力してください"
