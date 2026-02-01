@@ -18,33 +18,26 @@
           <%= @celebration.title %>
         </h1>
 
-        <% if @celebration.short_message.present? %>
-          <p class="mt-2 text-sm text-stone-600">
-            <%= @celebration.short_message %>
-          </p>
-        <% end %>
-
         <div class="mt-6 space-y-2 text-sm text-stone-700">
-          <p>
-            <span class="text-stone-500">お祝いする人：</span>
-            <%= @celebration.giver_name %>
-          </p>
-          <p>
-            <span class="text-stone-500">お祝いされる人：</span>
-            <%= @celebration.receiver_name %>
-          </p>
+
 
           <% if @celebration.celebration_date.present? %>
-            <p>
-              <span class="text-stone-500">お祝い日：</span>
-              <%= l @celebration.celebration_date %>
+            <p class="mt-2 text-sm text-stone-600">
+              <%= @celebration.celebration_date %>
             </p>
-          <% else %>
+              <% end %>
             <p>
-              <span class="text-stone-500">お祝いする日：</span>
-              指定なし
+              <%= @celebration.giver_name %>
+              <span class="text-stone-500">から</span>
+              <%= @celebration.receiver_name %>
+              <span class="text-stone-500">へ</span>
             </p>
-          <% end %>
+
+            <% if @celebration.short_message.present? %>
+            <p class="mt-2 text-sm text-stone-600">
+              <%= @celebration.short_message %>
+            </p>
+              <% end %>
         </div>
 
         

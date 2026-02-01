@@ -4,11 +4,12 @@ class Celebration < ApplicationRecord
   has_one :bouquet, dependent: :destroy
 
   has_secure_password :view_password, validations: false
-  validates :view_password, length: { minimum: 6 }, allow_nil: true
+  
   validates :short_message, length: { maximum: 30 }, allow_blank: true
   before_validation :ensure_share_url, on: :create
   validates :title, :giver_name, :receiver_name, presence: true
   validates :share_url, presence: true, uniqueness: true
+  validates :view_password, length: { maximum: 10 }, allow_nil: true
 
   enum status: { draft: 0, published: 1 }
   before_validation :ensure_share_url, on: :create

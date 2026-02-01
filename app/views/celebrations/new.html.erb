@@ -1,10 +1,8 @@
 <div class="min-h-screen w-full overflow-auto bg-stone-50">
   <div class="mx-auto max-w-5xl px-4 py-10">
     <div class="mx-auto max-w-md">
-
-      <!-- 戻る -->
       <div class="mb-6">
-        <%= link_to root_path,
+        <%= link_to mypage_path,
               class: "inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-700" do %>
           <span>←</span>
           <span>戻る</span>
@@ -15,9 +13,25 @@
         <div class="mb-6">
           <h1 class="text-2xl font-bold tracking-tight">お祝いルーム作成</h1>
           <p class="mt-2 text-sm text-stone-600">
-            必要事項を入力して作成します。
+            まずはお祝いルームの基本情報を入力してください。
           </p>
         </div>
+
+        <% if flash[:notice] %>
+          <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+
+        <% if flash[:alert] %>
+          <div class="mb-4 rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            <ul class="list-disc pl-5 space-y-1">
+              <% Array(flash[:alert]).each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
         <%= form_with model: @celebration, class: "space-y-5" do |f| %>
 
@@ -27,21 +41,7 @@
                   class: "block text-sm mt-4 font-medium text-stone-700" %>
             <%= f.text_field :title,
                   class: "mt-1 w-full rounded-xl border border-stone-300 px-4 py-3",
-                  placeholder: "例：RUNTEQ卒業" %>
-          </div>
-
-          <!-- 日付 -->
-          <div>
-            <%= f.label :celebration_date, "お祝いする日付*",
-                  class: "block text-sm mt-4 font-medium text-stone-700" %>
-            <%= f.date_field :celebration_date,
-                  value: (f.object.celebration_date&.strftime("%Y-%m-%d")),
-                  class: "mt-1 w-full rounded-xl border border-stone-300 px-4 py-3 bg-white" %>
-
-            <label class="mt-3 inline-flex items-center gap-2 text-sm text-stone-600">
-              <input type="checkbox" class="rounded border-stone-300">
-              日付指定なし
-            </label>
+                  placeholder: "例：○○高校卒業" %>
           </div>
 
           <!-- お祝いする人 -->
@@ -50,7 +50,7 @@
                   class: "block text-sm mt-4 font-medium text-stone-700" %>
             <%= f.text_field :giver_name,
                   class: "mt-1 w-full rounded-xl border border-stone-300 px-4 py-3",
-                  placeholder: "例：らんてくん" %>
+                  placeholder: "例：○○部のみんな" %>
           </div>
 
           <!-- お祝いされる人 -->
@@ -59,89 +59,17 @@
                   class: "block text-sm mt-4 font-medium text-stone-700" %>
             <%= f.text_field :receiver_name,
                   class: "mt-1 w-full rounded-xl border border-stone-300 px-4 py-3",
-                  placeholder: "例：69期生" %>
-          </div>
-
-          <!-- 一言 -->
-          <div>
-            <%= f.label :short_message, "お祝いの一言",
-                  class: "block text-sm mt-4 font-medium text-stone-700" %>
-            <%= f.text_field :short_message,
-                  class: "mt-1 w-full rounded-xl border border-stone-300 px-4 py-3",
-                  placeholder: "例：卒業おめでとう！" %>
-          </div>
-
-          <!-- メッセージ -->
-          <div>
-            <p class="text-sm mt-4 font-medium text-stone-700">メッセージを書く*</p>
-
-            <div class="mt-3 flex flex-col items-center gap-2">
-              <div class="flex h-20 w-20 items-center justify-center">
-                <%= image_tag "icon_letter.png",
-                      class: "h-20 w-20 object-contain" %>
-              </div>
-
-            <!-- 仮置き -->
-              <div class="flex flex-wrap items-center justify-center gap-2">
-                <span class="rounded-full border px-2 py-1 text-[11px] text-stone-600">
-                  手紙 0件
-                </span>
-                <span class="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-1 text-[11px] text-emerald-700">
-                  募集中
-                </span>
-              </div>
-            </div>
-
-            <button type="button"
-              class="mt-3 w-full rounded-xl border border-stone-200 bg-white px-4 py-2 text-sm font-semibold hover:bg-stone-50">
-              メッセージ入力フォームを開く
-            </button>
-          </div>
-
-          <!-- 花束 -->
-          <div>
-            <p class="text-sm mt-4 font-medium text-stone-700">花束をつくる*</p>
-
-            <div class="mt-3 flex flex-col items-center gap-2">
-              <div class="flex h-24 w-24 items-center justify-center">
-                <%= image_tag "icon_bouquet.png",
-                      class: "h-24 w-24 object-contain" %>
-              </div>
-            <!-- 仮置き -->
-              <p class="text-sm text-stone-500">未選択</p>
-            </div>
-
-            <button type="button"
-              class="mt-3 w-full rounded-xl border border-stone-200 bg-white px-4 py-2 text-sm font-semibold hover:bg-stone-50">
-              花検索フォームを開く
-            </button>
-          </div>
-
-          <!-- 背景 -->
-          <div>
-            <p class="text-sm mt-4 font-medium text-stone-700">背景パターンの選択*</p>
-            <div class="mt-2 grid grid-cols-3 gap-3">
-              <% 6.times do %>
-                <div class="aspect-square rounded-xl border bg-stone-50"></div>
-              <% end %>
-            </div>
-          </div>
-
-          <!-- 合言葉 -->
-          <div>
-            <%= f.label :view_password, "閲覧用の合言葉(6文字以内)",
-                  class: "block text-sm mt-4 font-medium text-stone-700" %>
-            <%= f.password_field :view_password,
-                  class: "mt-1 w-full rounded-xl border border-stone-300 px-4 py-3",
-                  placeholder: "例：ありがとう" %>
+                  placeholder: "例：○○先輩" %>
           </div>
 
           <!-- 作成 -->
-          <%= f.submit "作成する",
-                class: "mt-4 w-full rounded-xl bg-teal-700 px-6 py-3 text-sm font-semibold text-white hover:bg-teal-600" %>
+        <div class="mt-8 mb-8 flex justify-center">
+          <%= f.submit "お祝いルームを作成する",
+                class: "block celebration-width rounded-xl bg-teal-700 px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
+        </div>
 
           <p class="mt-4 text-center text-sm text-stone-500">
-            作成後、閲覧用URLが発行されます
+            作成後に、手紙・花束の追加と投稿URLの発行ができます。
           </p>
 
         <% end %>
