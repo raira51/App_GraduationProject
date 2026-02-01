@@ -1,0 +1,2 @@
+module PublicLettersHelper
+end
