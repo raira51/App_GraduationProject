@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -25,12 +23,21 @@ Rails.application.routes.draw do
 
   # celebrations
   resources :celebrations, only: %i[new create edit update] do
+    # status
     member do
       get :issued
       patch :publish
-   end
+    end
+    # letters
+    resources :letters, only: %i[new create edit update destroy]
+    # flowers
+    resource :bouquet, only: %i[show edit update]
+    resources :bouquet_flowers, only: %i[create destroy]
   end
 
-  #share_url
+  # share_url(閲覧用)
   get "/celebrations/:share_url", to: "celebrations#show", as: :public_celebration
+  # share_url(手紙投稿用)
+  get  "/l/:share_url", to: "public_letters#new"
+  post "/l/:share_url", to: "public_letters#create"
 end
