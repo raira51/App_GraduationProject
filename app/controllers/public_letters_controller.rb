@@ -11,11 +11,15 @@ class PublicLettersController < ApplicationController
     @letter = @celebration.letters.new(letter_params)
 
     if @letter.save
-        redirect_to public_celebration_path(@celebration.share_url), notice: "送信しました"
+        redirect_to public_letter_thanks_path(@celebration.share_url), notice: "送信しました"
       else
         flash.now[:alert] = @letter.errors.full_messages
         render :new, status: :unprocessable_entity
     end
+  end
+
+  def thanks
+    @celebration = Celebration.find_by!(share_url: params[:share_url])
   end
 
   private
