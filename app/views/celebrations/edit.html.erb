@@ -151,7 +151,7 @@
           <!-- 作成 -->
         <div class="mt-4">
           <%= f.submit "一時保存する",
-                class: "inline-flex w-full justify-center rounded-xl bg-teal-700 px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
+                class: "block w-full rounded-xl bg-teal-700 px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
         </div>
         <% end %>
 
@@ -161,7 +161,7 @@
                 publish_celebration_path(@celebration),
                 method: :patch,
                 form: { data: { turbo: false } },
-                class: "inline-flex w-full justify-center rounded-xl bg-teal-700 px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
+                class: "block w-full rounded-xl bg-teal-700 px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
               <% else %>
                 <p class="text-center text-sm text-stone-500">このお祝いルームは確定済みです</p>
           <% end %>
