@@ -17,7 +17,7 @@
 
   <div class="mt-8 mb-8 flex justify-center">
     <%= link_to "新しいお祝いルームを作成する", new_celebration_path,
-          class: "block celebration-width rounded-xl bg-teal-700 px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
+          class: "block w-full rounded-xl bg-teal-700 px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_4px_0_#115e59] transition-all duration-150 hover:bg-teal-600 active:translate-y-[3px] active:scale-[0.98] active:shadow-none" %>
   </div>
 
   <!-- 作成中 -->
@@ -33,7 +33,10 @@
         <%= link_to edit_celebration_path(celebration), class: "block" do %>
           <div class="square w-36 overflow-hidden rounded-2xl bg-white border border-stone-200 p-3 shadow-sm flex flex-col justify-between transition hover:shadow-md">
             <p class="text-xs text-stone-500 leading-tight">
-              <%= "#{celebration.giver_name.presence || '（お祝いする人未設定）'}から #{celebration.receiver_name.presence || '（お祝いされる人未設定）'}へ" %>
+              <%= "#{celebration.giver_name.presence || '（お祝いする人未設定）'}から "%>
+            </p>
+            <p class="text-xs text-stone-500 leading-tight">
+              <%= "#{celebration.receiver_name.presence || '（お祝いされる人未設定）'}へ" %>
             </p>
 
             <p class="mt-2 text-sm font-semibold leading-snug line-clamp-3">
@@ -42,11 +45,9 @@
 
             <p class="mt-3 text-xs text-stone-500 font-mono truncate">
               更新日:
-              <%= l celebration.updated_at.to_date %>
             </p>
-
-            <p class="mt-2 text-[11px] text-amber-600">
-              編集中
+            <p class="mt-1 text-xs text-stone-500 font-mono truncate">
+              <%= l celebration.updated_at.to_date %>
             </p>
           </div>
         <% end %>
