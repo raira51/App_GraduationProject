@@ -81,4 +81,7 @@ ja:
     create:
       sent: "送信しました"
 
-
+  bouquet_flowers:
+    create:
+      success: "花束を「%{flower_name}」で作成しました"
+      failure: "花束の作成に失敗しました"

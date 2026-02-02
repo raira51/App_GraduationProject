@@ -1,0 +1,4 @@
+default: bouquets/default.png
+バラ : bouquets/rose_bq.png
+ひまわり : bouquets/sunflower_bq.png
+チューリップ : bouquets/tulip_bq.png

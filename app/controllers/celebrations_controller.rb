@@ -23,6 +23,9 @@ class CelebrationsController < ApplicationController
   end
 
   def edit
+    @celebration = current_user.celebrations.find(params[:id])
+    @flowers = Flower.order(:id)
+    @selected_flower_ids = @celebration.bouquet&.bouquet_flowers&.pluck(:flower_id) || []
   end
 
   def update
@@ -50,7 +53,7 @@ class CelebrationsController < ApplicationController
     end
 
     @celebration.update!(status: :published)
-    redirect_to mypage_path, t("celebrations.publish.published")
+    redirect_to issued_celebration_path, notice: t("celebrations.publish.published")
   end
 
   def issued
