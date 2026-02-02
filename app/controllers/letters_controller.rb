@@ -10,7 +10,7 @@ class LettersController < ApplicationController
   def create
     @letter = @celebration.letters.new(letter_params)
     if @letter.save
-      redirect_to edit_celebration_path(@celebration), notice: "手紙を追加しました"
+      redirect_to edit_celebration_path(@celebration), notice: t("letters.create.added")
     else
       render :new, status: :unprocessable_entity
     end
@@ -21,7 +21,7 @@ class LettersController < ApplicationController
 
   def update
     if @letter.update(letter_params)
-      redirect_to edit_celebration_path(@celebration), notice: "手紙を更新しました"
+      redirect_to edit_celebration_path(@celebration), notice: t("letters.update.updated")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -29,7 +29,7 @@ class LettersController < ApplicationController
 
   def destroy
     @letter.destroy!
-    redirect_to edit_celebration_path(@celebration), notice: "手紙を削除しました"
+    redirect_to edit_celebration_path(@celebration), notice: t("letters.destroy.deleted")
   end
 
   private

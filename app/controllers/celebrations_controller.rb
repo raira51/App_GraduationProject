@@ -15,7 +15,7 @@ class CelebrationsController < ApplicationController
     @celebration.status = :draft
 
     if @celebration.save
-      redirect_to edit_celebration_path(@celebration)
+      redirect_to edit_celebration_path(@celebration), notice: t("celebrations.create.redirect_to_edit")
     else
       flash.now[:alert] = @celebration.errors.full_messages
       render :new, status: :unprocessable_entity
@@ -27,7 +27,7 @@ class CelebrationsController < ApplicationController
 
   def update
     if @celebration.update(celebration_params)
-      redirect_to edit_celebration_path(@celebration), notice: "保存しました"
+      redirect_to edit_celebration_path(@celebration), notice: t("celebrations.update.saved")
     else
       flash.now[:alert] = @celebration.errors.full_messages
       render :edit, status: :unprocessable_entity
@@ -36,21 +36,21 @@ class CelebrationsController < ApplicationController
 
   def destroy
     @celebration.destroy!
-    redirect_to mypage_path, notice: "削除しました"
+    redirect_to mypage_path, notice: t("celebrations.destroy.deleted")
   end
 
   def publish
     errors = []
-    errors << "公開するには手紙を1通以上追加してください" if @celebration.letters.none?
+    errors << t("celebrations.publish.requires_letter") if @celebration.letters.none?
     bouquet_present = @celebration.bouquet&.bouquet_flowers&.any?
-    errors << "公開するには花束を作成してください" unless bouquet_present
+    errors << t("celebrations.publish.requires_bouquet") unless bouquet_present
     if errors.any?
       redirect_to edit_celebration_path(@celebration), alert: errors
       return
     end
 
     @celebration.update!(status: :published)
-    redirect_to mypage_path, notice: "公開しました"
+    redirect_to mypage_path, t("celebrations.publish.published")
   end
 
   def issued
