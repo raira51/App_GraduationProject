@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :letters, only: %i[new create edit update destroy]
     # flowers
     resource :bouquet, only: %i[show edit update]
+    resources :flowers, only: [:index]
     resources :bouquet_flowers, only: %i[create destroy]
   end
 
