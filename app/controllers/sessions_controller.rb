@@ -7,15 +7,15 @@ class SessionsController < ApplicationController
     password = params.dig(:user, :password).to_s
 
     if login(name, password)
-      redirect_to mypage_path, notice: "ログインしました"
+      redirect_to mypage_path, notice: t("sessions.create_success")
     else
-      flash.now[:alert] = "IDまたはパスワードが違います"
+      flash.now[:alert] = t("sessions.create.invalid_credentials")
       render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     logout
-    redirect_to login_path, notice: "ログアウトしました"
+    redirect_to login_path, notice: t("sessions.destroy.logged_out")
   end
 end

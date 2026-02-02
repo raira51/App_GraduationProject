@@ -1,4 +1,5 @@
 ja:
+  # model / validation
   activerecord:
     attributes:
       user:
@@ -15,6 +16,7 @@ ja:
       letter:
         sender_name: "送信者名"
         body: "メッセージ"
+
     errors:
       messages:
         too_short: "は%{count}文字以上にしてください"
@@ -44,3 +46,39 @@ ja:
           attributes:
             view_password:
               too_long: "は10文字以内で入力してください"
+  # controller
+  users:
+    create:
+      registered: "登録しました"
+  celebrations:
+    create:
+      redirect_to_edit: "作成しました"
+    update:
+      saved: "保存しました"
+    destroy:
+      deleted: "削除しました"
+    publish:
+      published: "公開しました"
+      requires_letter: "公開するには手紙を1通以上追加してください"
+      requires_bouquet: "公開するには花束を作成してください"
+
+  sessions:
+    create_success: "ログインしました"
+    create:
+      invalid_credentials: "IDまたはパスワードが違います"
+    destroy:
+      logged_out: "ログアウトしました"
+
+  letters:
+    create:
+      added: "手紙を追加しました"
+    update:
+      updated: "手紙を更新しました"
+    destroy:
+      deleted: "手紙を削除しました"
+  
+  public_letters:
+    create:
+      sent: "送信しました"
+
+

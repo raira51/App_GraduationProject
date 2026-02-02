@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       auto_login(@user)
-      redirect_to mypage_path, notice: "登録しました"
+      redirect_to mypage_path, notice: t("users.create.registered")
     else
       flash.now[:alert] = @user.errors.full_messages
       render :new, status: :unprocessable_entity
