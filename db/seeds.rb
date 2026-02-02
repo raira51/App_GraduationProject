@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+flowers = [
+  { id: 1, name: "バラ",      word: "愛" },
+  { id: 2, name: "ひまわり", word: "憧れ" },
+  { id: 3, name: "チューリップ",     word: "思いやり" }
+]
+
+flowers.each do |attrs|
+  Flower.upsert(attrs, unique_by: :id)
+end
