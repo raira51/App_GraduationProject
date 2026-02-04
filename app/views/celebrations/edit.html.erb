@@ -112,8 +112,8 @@
             <p class="text-sm mt-4 font-medium text-stone-700">花束をつくる*</p>
 
             <div class="mt-3 flex flex-col items-center gap-2">
-              <div class="flex h-24 w-24 items-center justify-center">
-                <%= image_tag bouquet_image_path_for(@celebration),class: "h-48 w-full object-cover" %>
+              <div class="h-24 w-24 overflow-hidden rounded-xl bg-stone-50">
+                <%= image_tag bouquet_image_path_for(@celebration),class: "h-full w-full object-contain" %>
               </div>
                 <% if @celebration.bouquet&.bouquet_flowers&.any? %>
                   <p class="text-sl text-emerald-700">選択済み：<%= bouquet_main_flower_name_for(@celebration) %></p>
