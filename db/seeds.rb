@@ -8,11 +8,14 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 flowers = [
-  { id: 1, name: "バラ",      word: "愛" },
+  { id: 1, name: "バラ",      word: "絆" },
   { id: 2, name: "ひまわり", word: "憧れ" },
-  { id: 3, name: "チューリップ",     word: "思いやり" }
+  { id: 3, name: "チューリップ",     word: "誠実な愛" }
 ]
 
 flowers.each do |attrs|
-  Flower.upsert(attrs, unique_by: :id)
+  Flower.find_or_initialize_by(name: attrs[:name]).tap do |f|
+    f.word = attrs[:word]
+    f.save!
+  end
 end
