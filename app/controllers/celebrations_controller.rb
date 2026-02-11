@@ -47,6 +47,11 @@ class CelebrationsController < ApplicationController
     errors << t("celebrations.publish.requires_letter") if @celebration.letters.none?
     bouquet_present = @celebration.bouquet&.bouquet_flowers&.any?
     errors << t("celebrations.publish.requires_bouquet") unless bouquet_present
+
+    #if @celebration.background_type.blank?
+    #errors << t("celebrations.publish.requires_background")
+    #end
+
     if errors.any?
       redirect_to edit_celebration_path(@celebration), alert: errors
       return
@@ -72,7 +77,8 @@ class CelebrationsController < ApplicationController
       :giver_name,
       :receiver_name,
       :short_message,
-      :view_password
+      :view_password,
+      #:background_type
     )
   end
 end

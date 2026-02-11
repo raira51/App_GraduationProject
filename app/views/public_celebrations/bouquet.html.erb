@@ -1,0 +1,36 @@
+<% if @bouquet_flowers.blank? %>
+  <p class="text-sm text-stone-600">まだお花が選ばれていません。</p>
+<% else %>
+  <% grouped = @bouquet_flowers.group_by(&:flower_id) %>
+
+  <ul class="space-y-3">
+    <% grouped.each do |flower_id, bfs| %>
+      <% flower = bfs.first.flower %>
+
+      <li class="flex gap-3 rounded-2xl border border-stone-200 bg-stone-50 p-3">
+        <div class="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-white">
+          <%= image_tag flower_image_path_for(flower),
+                class: "h-full w-full object-contain" %>
+        </div>
+
+        <div class="min-w-0 flex-1">
+          <div class="flex items-center justify-between">
+            <div class="text-sm font-semibold text-stone-800">
+              <%= flower.name %>
+            </div>
+            <div class="text-xs text-stone-600">
+            <!-- 仮置き(実装予定)
+              <%= bfs.size %>本 -->
+            </div>
+          </div>
+
+          <% if flower.word.present? %>
+            <div class="mt-1 text-xs text-stone-600">
+              花言葉：<%= flower.word %>
+            </div>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
