@@ -14,6 +14,20 @@ class Celebration < ApplicationRecord
   enum status: { draft: 0, published: 1 }
   before_validation :ensure_share_url, on: :create
 
+  # 背景画像
+  BACKGROUND_TYPES = %w[
+    room_base
+    celebration
+    thank_you
+    happy_birthday
+    special_day
+    for_you
+  ].freeze
+
+  validates :background_type,
+  inclusion: { in: BACKGROUND_TYPES }, presence: true,
+  allow_nil: true
+
   private
 
   def ensure_share_url

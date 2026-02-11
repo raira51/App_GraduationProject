@@ -61,6 +61,7 @@ ja:
       published: "公開しました"
       requires_letter: "公開するには手紙を1通以上追加してください"
       requires_bouquet: "公開するには花束を作成してください"
+      requires_background: "公開するには背景パターンを選択してください"
 
   sessions:
     create_success: "ログインしました"

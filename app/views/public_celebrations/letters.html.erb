@@ -1,0 +1,41 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="fixed inset-0 z-50">
+    <div class="absolute inset-0 bg-black/40" data-action="click->modal#close"></div>
+
+    <div class="absolute left-1/2 top-1/2 w-[92vw] max-w-xl -translate-x-1/2 -translate-y-1/2">
+      <div class="flex max-h-[80vh] flex-col rounded-2xl bg-white shadow-xl ring-1 ring-black/5">
+        <div class="flex items-center justify-between border-b border-stone-200 px-4 py-3">
+          <h2 class="text-sm font-semibold text-stone-800">届いた手紙</h2>
+
+          <%= link_to "閉じる",
+                public_celebration_path(@celebration.share_url),
+                data: { turbo_frame: "_top" },
+                class: "rounded-lg px-3 py-1.5 text-sm font-semibold text-stone-600 hover:bg-stone-100" %>
+        </div>
+
+        <div class="flex-1 overflow-y-auto px-4 py-4">
+          <% if @letters.blank? %>
+            <p class="text-sm text-stone-600">まだ手紙が届いていません。</p>
+          <% else %>
+            <ul class="space-y-2">
+              <% @letters.each do |letter| %>
+                <li>
+                  <%= link_to public_celebration_letter_path(@celebration.share_url, letter.id),
+                        data: { turbo_frame: "modal" },
+                        class: "block rounded-xl border border-stone-200 bg-stone-50 px-3 py-3 hover:bg-stone-100" do %>
+                    <div class="text-sm font-semibold text-stone-800">
+                      <%= letter.sender_name.presence || "匿名" %>
+                    </div>
+                    <div class="mt-1 text-xs text-stone-600 line-clamp-2">
+                      <%= letter.body %>
+                    </div>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
