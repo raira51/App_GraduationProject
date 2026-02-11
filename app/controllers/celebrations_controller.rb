@@ -58,7 +58,7 @@ class CelebrationsController < ApplicationController
     end
 
     @celebration.update!(status: :published)
-    redirect_to issued_celebration_path, notice: t("celebrations.publish.published")
+    redirect_to issued_celebration_path(@celebration), notice: t("celebrations.publish.published")
   end
 
   def issued
