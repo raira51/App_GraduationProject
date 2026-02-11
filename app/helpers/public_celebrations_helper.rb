@@ -1,0 +1,2 @@
+module PublicCelebrationsHelper
+end

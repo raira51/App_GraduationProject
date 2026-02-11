@@ -21,6 +21,21 @@ Rails.application.routes.draw do
   # pages
   get "/mypage", to: "mypages#show"
 
+  # share_url(閲覧用)
+  scope "/c/:share_url", as: :public_celebration do
+    get "/",            to: "public_celebrations#show"
+    get "/bouquet",     to: "public_celebrations#bouquet",  as: :bouquet
+    get "/letters",     to: "public_celebrations#letters",  as: :letters
+    get "/letters/:id", to: "public_celebrations#letter",   as: :letter
+  end
+
+  # share_url(手紙投稿用)
+  scope "/l/:share_url" do
+    get  "/",       to: "public_letters#new"
+    post "/",       to: "public_letters#create"
+    get  "/thanks", to: "public_letters#thanks", as: :public_letter_thanks
+  end
+
   # celebrations
   resources :celebrations, only: %i[new create edit update] do
     # status
@@ -35,11 +50,4 @@ Rails.application.routes.draw do
     resources :flowers, only: [:index]
     resources :bouquet_flowers, only: %i[create destroy]
   end
-
-  # share_url(閲覧用)
-  get "/celebrations/:share_url", to: "celebrations#show", as: :public_celebration
-  # share_url(手紙投稿用)
-  get  "/l/:share_url", to: "public_letters#new"
-  post "/l/:share_url", to: "public_letters#create"
-  get "/l/:share_url/thanks", to: "public_letters#thanks", as: :public_letter_thanks
 end
