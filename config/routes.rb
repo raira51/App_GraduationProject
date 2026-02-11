@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   # share_url(手紙投稿用)
   scope "/l/:share_url" do
-    get  "/",       to: "public_letters#new"
+    get  "/",       to: "public_letters#new", as: :public_letter_new
     post "/",       to: "public_letters#create"
     get  "/thanks", to: "public_letters#thanks", as: :public_letter_thanks
   end
