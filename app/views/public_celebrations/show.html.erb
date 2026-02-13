@@ -6,10 +6,10 @@
             class: "absolute inset-0 h-full w-full object-contain rounded-2xl shadow pointer-events-none select-none" %>
 
           <% if @celebration.short_message.present? %>
-            <div class="absolute top-[5%] left-1/2 -translate-x-1/2 z-20 text-center">
-              <div class="relative bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl text-sm shadow">
+            <div class="absolute top-2 sm:top-[5%] left-1/2 -translate-x-1/2 z-20 text-center">
+              <div class="relative bg-white/90 backdrop-blur-sm px-3 py-2 sm:px-5 sm:py-3 rounded-2xl text-xs sm:text-sm shadow max-w-[86%] sm:max-w-none">
 
-                <p class="text-xm text-stone-600 mb-1">
+                <p class="text-[11px] sm:text-xs text-stone-600 mb-1">
                   <%= @celebration.celebration_date %>
                 </p>
     
