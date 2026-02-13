@@ -37,14 +37,14 @@ Rails.application.routes.draw do
   end
 
   # celebrations
-  resources :celebrations, only: %i[new create edit update] do
+  resources :celebrations, only: %i[new create edit update destroy] do
     # status
     member do
       get :issued
       patch :publish
     end
     # letters
-    resources :letters, only: %i[new create edit update destroy]
+    resources :letters, only: %i[index new create edit update destroy]
     # flowers
     resource :bouquet, only: %i[show edit update]
     resources :flowers, only: [:index]
