@@ -5,6 +5,28 @@
       <%= image_tag background_image_path_for(@celebration),
             class: "absolute inset-0 h-full w-full object-contain rounded-2xl shadow pointer-events-none select-none" %>
 
+          <% if @celebration.short_message.present? %>
+            <div class="absolute top-[5%] left-1/2 -translate-x-1/2 z-20 text-center">
+              <div class="relative bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl text-sm shadow">
+
+                <p class="text-xm text-stone-600 mb-1">
+                  <%= @celebration.celebration_date %>
+                </p>
+    
+                <p class="text-xs text-stone-600 mb-1">
+                  <%= @celebration.giver_name %> から 
+                  <%= @celebration.receiver_name %> へ
+                </p>
+
+                <p class="font-medium text-stone-800">
+                  <%= @celebration.short_message %>
+                </p>
+
+                <div class="absolute left-1/2 -translate-x-1/2 bottom-[-8px] w-4 h-4 bg-white/90 rotate-45"></div>
+              </div>
+            </div>
+          <% end %>
+
       <!-- 花束：クリック領域 -->
       <%= link_to public_celebration_bouquet_path(@celebration.share_url),
             data: { turbo_frame: "modal" },
@@ -40,6 +62,18 @@
       </div>
     </div>
   </div>
+
+    <div class="mt-10 text-center">
+      <p class="text-sm text-stone-500 mb-2">
+        このお祝いページの閲覧URL
+      </p>
+
+      <div class="inline-flex items-center gap-2 bg-white border border-stone-200 rounded-xl px-4 py-2 shadow-sm">
+        <span class="text-xs font-mono text-stone-700 break-all">
+            <%= public_celebration_url(@celebration.share_url) %>
+        </span>
+      </div>
+    </div>
 
   <%= turbo_frame_tag "modal", class: "relative z-50" %>
 </div>

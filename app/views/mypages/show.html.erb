@@ -1,3 +1,4 @@
+<div class="min-h-screen w-full overflow-auto bg-stone-50">
 <div class="max-w-4xl mx-auto px-4 py-8">
   <% if flash[:notice] %>
     <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
@@ -54,7 +55,7 @@
       <% end %>
     </div>
   <% else %>
-    <div class="mt-4 rounded-xl border bg-white p-6 text-stone-600 text-center">
+    <div class="mt-4 mx-auto celebration-width rounded-xl border bg-white p-6 text-stone-600 text-center">
       <p>作成中のお祝いルームはありません</p>
     </div>
   <% end %>
@@ -88,9 +89,10 @@
       <% end %>
     </div>
   <% else %>
-    <div class="mt-4 rounded-xl border bg-white p-6 text-stone-600 text-center">
+    <div class="mt-4 mx-auto celebration-width rounded-xl border bg-white p-6 text-stone-600 text-center">
       <p>公開済みのお祝いルームはまだありません</p>
       <p class="mt-2 text-xs text-stone-500">「内容を確定する」で公開すると、ここに表示されます</p>
     </div>
   <% end %>
+</div>
 </div>

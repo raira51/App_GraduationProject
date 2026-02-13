@@ -3,6 +3,11 @@ class LettersController < ApplicationController
   before_action :set_celebration
   before_action :set_letter, only: %i[edit update destroy]
 
+  def index
+    @celebration = current_user.celebrations.find(params[:celebration_id])
+    @letters = @celebration.letters.order(created_at: :desc)
+  end
+
   def new
     @letter = @celebration.letters.new
   end
